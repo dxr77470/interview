@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="style.css" />  
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+
+ <title>Comments</title>
+<script>
+				
+						
+						$.getJSON("https://mysidewalk.com/api/engagement/v1/comments/100.json", function(json) {
+							console.log(json);
+							
+							var name=json.linked.users[0].firstName+" "+json.linked.users[0].lastName;
+							var imgUrl= json.linked.medias[0].url;
+							var wth="200";
+							var ht="100";
+						
+							
+							document.getElementById("div3").innerHTML =
+							"<img src="+imgUrl+" alt="+name+"width="+wth+" height="+ht+"> "
+							
+							document.getElementById("div2").innerHTML =
+							"<strong>"+ name + "</strong> " ;
+							
+							var created = new Date(json.linked.users[0].joinedAt );
+							var lstlogin = new Date(json.linked.users[0].lastLogin );
+							
+							document.getElementById("slug").innerHTML =
+							"<strong> Slug:  </strong> "+json.linked.users[0].slug ;
+							
+							document.getElementById("bio").innerHTML =
+							"<strong> Status: </strong> "+ json.linked.users[0].bio;
+							
+							document.getElementById("created").innerHTML =
+							"<strong> Created on: </strong> "+created.toDateString();
+							
+							document.getElementById("activty").innerHTML =
+							"<strong> Last activity on: </strong>"+lstlogin.toDateString();
+							
+							document.getElementById("recent").innerHTML =
+							"<strong>Recent Comments: </strong>"+json.comments[0].text;
+							
+						});
+					 							
+</script>	
+
+</head>
+<body>
+<div class="container" >
+
+	<div class="tittleU">
+	User Details	 
+	</div>
+
+	<div class=t1>
+		<div id="div3" class="th1" ></div>
+		<div id="div2" class="th1"  >user</div>
+	</div>
+		<div class="th2">
+		<div id="slug" class="td1" ></div>
+		<div id="bio" class="td1" ></div>
+		<div id="created" class="td1" ></div>
+		<div id="activty" class="td1" ></div>
+		<div id="recent" class="td1" ></div>
+	</div>
+
+</div>
+
+
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+</body>
+</html>

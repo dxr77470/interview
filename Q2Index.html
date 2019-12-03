@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+	color: #121212;
+	width: 100%;
+	height: 100%
+}
+ </style>	
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+
+ <title>Comments</title>
+<script>
+				
+						
+						$.getJSON("https://mysidewalk.com/api/engagement/v1/comments/100.json", function(json) {
+							console.log(json);
+							json;
+							
+							document.getElementById("btn1").innerHTML =
+							"Comment ID "+json.comments[0].id;
+							
+							var name=json.linked.users[0].firstName+" "+json.linked.users[0].lastName
+							var url="usrD.html"
+							var httag1="<a href="+url+">"+name+"</a>"
+							
+							
+							
+							document.getElementById("demo").innerHTML =
+							"<strong>"+httag1+ ":</strong> " +json.comments[0].text;
+							
+							var date1 = new Date(json.comments[0].createdAt)
+							document.getElementById("date1").innerHTML =date1.toDateString();
+						});
+					 							
+</script>	
+
+</head>
+<body>
+
+<div class="container">
+  <h2>mySidewalk Engagement Comments </h2>
+  <button id="btn1" type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Comment ID </button>
+
+ <div id="demo" class="collapse">
+    
+	 Human friendly text..!!
+	
+	Comment ID=100
+  </div> <a id="date1" data-toggle="tooltip" title="Commented on">Date </a>
+  
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+Description
+===============
+The user has a file that is made up of short (less than 1000 character) strings, each on a different line
+(assume any common character or character combination that means a newline to someone might be used
+interchangeably in this file). Most of these strings will be preceded by numbers, i.e.
+“2 Steaks”, “10 Chicken Wings”, “343GuiltySparks”.
+Accept the file from the user and return them a file with the same items sorted first by the numeric value of
+any leading number (2 < 10 < 343) and then alphabetically for the rest of the string.
+
+
+
+Solution description
+================
+The solution is based on Python3 (3.5.1) and its standard library. No external dependencies required.
+In script mode, file name has to be passed as an argument.Input file name is required and the output file is optional. All the files are text files.
+
+Tests are placed in the test.py file.
+
+
+Assumptions:
+================
+- If a string does not contain a number that precedes text, it'll be placed after all 'numbered' strings in the sorted
+output file, sorted alphabetically with other strings without a number;
+- A 'numbered' string may or may not contain a separator between the preceding number and the rest of the string:
+“10 Chicken Wings”, “343GuiltySparks”;
+- the 'text' part of the string will be starting right after the end of the number part;
+- all non-alphanumeric symbols in the text will be ignored while sorting;
+- Empty and strings that contain a number are ignored;
+
+
